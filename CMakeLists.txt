@@ -11,6 +11,10 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
+set(QT5_LIBS_LINK
+        Qt5::Core
+        Qt5::Gui
+        Qt5::Widgets)
 
 find_package(Qt5 COMPONENTS
         Core
@@ -21,9 +25,6 @@ find_package(Qt5 COMPONENTS
 set(WINDOW_FILES
         main.cpp)
 
-add_executable(PicShot XCore ${WINDOW_FILES})
-target_link_libraries(PicShot
-        Qt5::Core
-        Qt5::Gui
-        Qt5::Widgets
-        )
+add_executable(${PROJECT_NAME} XCore ${WINDOW_FILES})
+target_link_libraries(${PROJECT_NAME}
+        ${QT5_LIBS_LINK})

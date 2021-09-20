@@ -5,8 +5,10 @@
 #ifndef PICSHOT_XSYSINFO_H
 #define PICSHOT_XSYSINFO_H
 
+#include <QScreen>
 
-class XSysInfo  {
+class XSysInfo : public QScreen
+{
 
 };
 
