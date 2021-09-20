@@ -6,6 +6,15 @@ Lightweight screenshot tool
 
 
 
+## Build And Delete
+
+```bash
+1. build.bat 
+2. build.bat delete 
+```
+
+
+
 ## Build
 
 ### MSCVC Build
