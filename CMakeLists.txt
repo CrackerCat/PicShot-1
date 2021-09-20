@@ -1,5 +1,11 @@
 cmake_minimum_required(VERSION 3.20)
-project(PicShot)
+set(PROJECT_NAME PicShot)
+#set(PROJECT_VERSION_MAJOR 0)
+#set(PROJECT_VERSION_MINOR 1)
+
+project(${PROJECT_NAME})
+
+add_subdirectory(XCore)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_AUTOMOC ON)
@@ -12,7 +18,10 @@ find_package(Qt5 COMPONENTS
         Widgets
         REQUIRED)
 
-add_executable(PicShot main.cpp)
+set(WINDOW_FILES
+        main.cpp)
+
+add_executable(PicShot XCore ${WINDOW_FILES})
 target_link_libraries(PicShot
         Qt5::Core
         Qt5::Gui

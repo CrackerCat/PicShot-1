@@ -6,11 +6,9 @@
 #define PICSHOT_XSYSINFO_H
 
 
-
-class XSysInfo {
+class XSysInfo  {
 
 };
-
 
 
 #endif //PICSHOT_XSYSINFO_H
