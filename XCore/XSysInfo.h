@@ -5,12 +5,13 @@
 #ifndef PICSHOT_XSYSINFO_H
 #define PICSHOT_XSYSINFO_H
 
+#include "xglobal.h"
 #include <QScreen>
 
-class XSysInfo : public QScreen
+class Q_DECL_EXPORT XSysInfo : public QScreen
 {
-
+public:
+    void display();
 };
-
 
 #endif //PICSHOT_XSYSINFO_H

@@ -15,6 +15,7 @@ set(QT5_LIBS_LINK
         Qt5::Core
         Qt5::Gui
         Qt5::Widgets)
+set(EXECUTABLE_OUTPUT_PATH  ${PROJECT_BINARY_DIR}/bin) # 更改二进制输出路径
 
 find_package(Qt5 COMPONENTS
         Core
