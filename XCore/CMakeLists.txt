@@ -1,6 +1,6 @@
 set(LIB_SHARE_NAME "XCore")
 
-add_compile_definitions(XCORE_LIBRARY)    # 定义导入导出宏 xglobal.h
+add_compile_definitions(XCORE_LIBRARY)    # 定义导入导出宏 x_global.h
 
 find_package(Qt5 COMPONENTS
         Core
@@ -9,9 +9,9 @@ find_package(Qt5 COMPONENTS
         REQUIRED)
 
 set(XCORE_FILES
-        xglobal.h
-        XSysInfo.h
-        XSysInfo.cpp)
+        x_global.h
+        xsysinfo.h
+        xsysinfo.cpp)
 set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib) # 更改库输出路径
 
 add_library(${LIB_SHARE_NAME} SHARED ${XCORE_FILES})

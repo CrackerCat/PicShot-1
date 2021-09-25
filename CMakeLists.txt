@@ -17,6 +17,9 @@ set(QT5_LIBS_LINK
         Qt5::Widgets)
 set(EXECUTABLE_OUTPUT_PATH  ${PROJECT_BINARY_DIR}/bin) # 更改二进制输出路径
 
+#include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Xcore)
+#link_directories(${EXECUTABLE_OUTPUT_PATH})
+
 find_package(Qt5 COMPONENTS
         Core
         Gui
@@ -26,6 +29,7 @@ find_package(Qt5 COMPONENTS
 set(WINDOW_FILES
         main.cpp)
 
-add_executable(${PROJECT_NAME} XCore ${WINDOW_FILES})
+add_executable(${PROJECT_NAME} ${WINDOW_FILES})
 target_link_libraries(${PROJECT_NAME}
-        ${QT5_LIBS_LINK})
+        ${QT5_LIBS_LINK}
+        XCore)
