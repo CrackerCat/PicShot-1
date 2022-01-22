@@ -161,7 +161,7 @@ RectCalcu::~RectCalcu()
 
 QRect& RectCalcu::getSelRect()
 {
-	if (m_cursorType == CursorType::Select)
+	if (m_cursorType == ScreenStatus::Select)
 		m_rtSel = setSelRect(m_startPos, m_EndPos);
 
 	return m_rtSel;
@@ -236,7 +236,7 @@ void RectCalcu::clear()
 	m_modifyStartPos = QPoint();
 	m_modifyEndPos = QPoint();
 	m_rtSel = QRect();
-	m_cursorType = CursorType::Waiting;
+	m_cursorType = ScreenStatus::Waiting;
 	m_bClear = true;
 }
 

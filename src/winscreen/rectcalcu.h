@@ -18,30 +18,44 @@ QT_END_NAMESPACE
 namespace XC {
 
 // TODO 2021.11.09 后优化为 emun class、或写进 class 里面定，而非此全局形式(那就需要重载 qDebug() 的 << 函数了，输出类)
-enum CursorType {                                  // ------------（矩形区域）------------
-    Select,                                        // 选中
-    Move,                                          // 移动
-    Waiting,                                       // 等待（未有，和已有矩形局域）
-    ModifWidth,                                    // 拉伸左、右
-    ModifHeight,                                   // 拉伸上、下
-    ModifBorderSize = ModifWidth | ModifHeight,    // 拉伸任意一边（左、右、上、下）
+enum ScreenStatus {                                  // ------------（矩形区域）------------
+	Auto,     // 自动检测
+	Custom,   // 手动拖曳
 
-    ModifyTLAndBR,                                 // 拉伸斜对角（左上、右下）
-    ModifyTRAndBL,                                 // 拉伸斜对角（右上、左下）
-    ModifyCorner = ModifyTLAndBR | ModifyTRAndBL,  // 拉伸斜任意一斜角（左上、右下、右上、左下）
-    ModifySize = ModifBorderSize | ModifyCorner,   // 拉伸矩形任意一边或一斜角（左、右、上、下；左上、右下、右上、左下）
+	Left,
+	Right,
+	Top,
+	Bottom,
+	TopLeft,
+	TopRight,
+	BottomLeft,
+	BottomRight,
 
-                                                   // ------------（绘画栏状态）------------
-    Drawing,                                       // 绘画中（绘画按钮有处于点击状态）
-    DrawSelect,                                    // 绘画时选中的绘画元素
-    DrawMove,                                      // 绘画时移动的绘画元素
-    DrawWaiting,                                   // 绘画时等待
+	Width = Left | Right,                    // 左、右
+	Height = Top | Bottom,                   // 上、下
+	Edge = Width | Height,                   // 任意一边（左、右、上、下）
+	TLAndBR = TopLeft | BottomRight,         // 斜对角（左上、右下）
+	TRAndBL = TopRight | BottomLeft,         // 斜对角（右上、左下）
+	Corner = TLAndBR | TRAndBL,              // 斜任意一斜角（左上、右下、右上、左下）
+	Frame = Edge | Corner,                   // 矩形任意一边或一斜角（左、右、上、下；左上、右下、右上、左下）         
 
-                                                   // ------------（未知）------------
-    UnknowCursorType                               // 未知
+	// 基础的几种状态
+	WaitBase,                                // 基础的等待状态（未有，和已有矩形局域）
+	SelectBase,                              // 基础的选中状态
+	MoveBase,                                // 基础的移动状态
+	DrawBase,                                // 基础的绘画状态    
+	StretchBase,                             // 基础的拉伸状态
+
+	Waiting,                                 // 等待 状态（未有，和已有矩形局域）
+	Selecting,                               // 选中状态
+	Moveing,                                 // 移动状态
+	Drawing,                                 // 绘画状态    
+	Stretching,                              // 拉伸状态
+
+    UnknowCursorType                         // 未知
 };
-Q_DECLARE_FLAGS(CursorTypes, CursorType)     // 枚举 CursorType 生成宏 CursorTypes
-Q_DECLARE_OPERATORS_FOR_FLAGS(CursorTypes)  // 重载宏 CursorType 的 |() 函数
+Q_DECLARE_FLAGS(CursorTypes, ScreenStatus)     // 枚举 CursorType 生成宏 CursorTypes
+Q_DECLARE_OPERATORS_FOR_FLAGS(CursorTypes)   // 重载宏 CursorType 的 |() 函数
 
 enum CursorArea {
     CursorCrossLeft = 0x00000000,
@@ -107,7 +121,7 @@ public:
 	QPoint m_moveEndPos;
 	QPoint m_modifyStartPos;
 	QPoint m_modifyEndPos;
-    CursorType m_cursorType = CursorType::UnknowCursorType;     // 程序状态（对应此时鼠标的操作类型）
+    ScreenStatus m_cursorType = ScreenStatus::UnknowCursorType;     // 程序状态（对应此时鼠标的操作类型）
 
 private:
 	QRect m_rtSel;
